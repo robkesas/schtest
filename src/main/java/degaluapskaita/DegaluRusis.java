@@ -1,6 +1,6 @@
 package degaluapskaita;
 
-public enum KuroRusis {
+public enum DegaluRusis {
 
     D, E95, E98, LPG;
 

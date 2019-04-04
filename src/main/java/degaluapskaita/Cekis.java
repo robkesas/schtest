@@ -3,10 +3,19 @@ package degaluapskaita;
 public class Cekis {
 
     private String data;
-    private KuroRusis degalurusis;
+    private DegaluRusis degalurusis;
     private double kainaVnt;
     private double kiekis;
     private int odometroparodymai;
+
+    public Cekis(DegaluRusis degalurusis, double kainaVnt, double kiekis, int odometroparodymai) {
+        this.degalurusis = degalurusis;
+        this.kainaVnt = kainaVnt;
+        this.kiekis = kiekis;
+        this.odometroparodymai = odometroparodymai;
+    }
+
+
 
     public String getData() {
         return data;
@@ -16,11 +25,11 @@ public class Cekis {
         this.data = data;
     }
 
-    public KuroRusis getDegalurusis() {
+    public DegaluRusis getDegalurusis() {
         return degalurusis;
     }
 
-    public void setDegalurusis(KuroRusis degalurusis) {
+    public void setDegalurusis(DegaluRusis degalurusis) {
         this.degalurusis = degalurusis;
     }
 
