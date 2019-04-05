@@ -35,31 +35,33 @@ public class Apskaita {
 
     }
 
+    public double vidKainaSimtui() {
 
-//    public double vidKainaSimtui() {
-//
-//        Cekis pirmasCekis = cekiai.get(0);
-//
-//        Cekis paskutinisCekis = cekiai.get(cekiai.size() - 1);
-//
-//        double nuvaziuotasAtstumas = paskutinisCekis.getOdometroparodymai() - pirmasCekis.getOdometroparodymai();
-//        double litroKaina = paskutinisCekis.getKainaVnt()  //turiu kazkokiu budu sudaugint visu cekiu kainavnt ir padalint is cekiu kiekio ir tada gauta kainavnt vidurki dauginti is turimu litrusumtuikm.
-//
-//        double litraiViso = 0;
-//        for (int i = 0; i < cekiai.size() - 1; i++) {
-//
-//            litraiViso = litraiViso + cekiai.get(0).getKiekis();
-//
-//        }
-//
-//        double litraiSimtuiKm = litraiViso / nuvaziuotasAtstumas;
-//
-//
-//        double tikraKaina = litraiSimtuiKm * cekiai.get(0).getKainaVnt();
-//
-//        return tikraKaina * 100.0;
-//
-//    }
+        Cekis pirmasCekis = cekiai.get(0);
+
+        Cekis paskutinisCekis = cekiai.get(cekiai.size() - 1);
+
+        double nuvaziuotasAtstumas = paskutinisCekis.getOdometroparodymai() - pirmasCekis.getOdometroparodymai();
+
+        double litraiViso = 0;
+        for (int i = 0; i < cekiai.size() - 1; i++) {
+
+            litraiViso = litraiViso + cekiai.get(i).getKiekis();
+        }
+
+        double vidLitroKaina = 0;
+        for (int i = 0; i < cekiai.size() - 1; i++) {
+
+            vidLitroKaina = cekiai.get(i).getKainaVnt() + vidLitroKaina;
+        }
+
+        double litraiSimtuiKm = litraiViso / nuvaziuotasAtstumas;
+
+        double bendraLitroKaina = vidLitroKaina / (cekiai.size() - 1);
+        double tikraKaina = bendraLitroKaina * vidLitraiSimtui();
+
+        return tikraKaina;
+    }
 
 
 }
