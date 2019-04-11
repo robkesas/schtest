@@ -67,7 +67,6 @@ public class Apskaita {
         }
 
 
-
         return vidLitroKaina / (numerioCekiai.size() - 1) * vidLitraiSimtui(valstybinisNumeris);
     }
 
