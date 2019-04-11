@@ -1,23 +1,44 @@
 package degaluapskaita;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Apskaita {
 
-    List<Cekis> cekiai = new ArrayList<>();
+
+    private Map<String, List<Cekis>> cekiaiByVm = new HashMap<>();
 
     public void pridetiCeki(Cekis cekis) {
-        cekiai.add(cekis);
+
+        if (!cekiaiByVm.containsKey(cekis.getValstybinisNumeris())) {
+            cekiaiByVm.put(cekis.getValstybinisNumeris(), new ArrayList<>());
+        }
+
+        cekiaiByVm.get(cekis.getValstybinisNumeris()).add(cekis);
     }
 
+    public Set<String> getCekiaiByVm() {
+        return cekiaiByVm.keySet();
+    }
 
-    public double vidLitraiSimtui() {
+//    public List <Cekis> getCekiaiByValstbinisNr (String valstybinisNumeris) {
+//        return cekiaiByVm.get(valstybinisNumeris);
+//    }
+    public double vidLitraiSimtui(String valstybinisNumeris) {
 
-        Cekis pirmasCekis = cekiai.get(0);// pirmas cekis
 
-        Cekis paskutinisCekis = cekiai.get(cekiai.size() - 1);// paskutinis cekis
+
+        List<Cekis> cekiai = this.cekiaiByVm.get(NumeriaiUtil.remobeSpaceNUpperCase(valstybinisNumeris));
+
+        if (cekiai == null ) {
+
+            return -1;
+
+        }
+
+        Cekis pirmasCekis = cekiai.get(0);
+
+        Cekis paskutinisCekis = cekiai.get(cekiai.size() - 1);
 
         int nuvaziuotasAtstumas = paskutinisCekis.getOdometroparodymai() - pirmasCekis.getOdometroparodymai();
 
@@ -35,32 +56,31 @@ public class Apskaita {
 
     }
 
-    public double vidKainaSimtui() {
 
-        Cekis pirmasCekis = cekiai.get(0);
 
-        Cekis paskutinisCekis = cekiai.get(cekiai.size() - 1);
+    public double vidKainaSimtui(String valstybinisNumeris) {
 
-        double nuvaziuotasAtstumas = paskutinisCekis.getOdometroparodymai() - pirmasCekis.getOdometroparodymai();
 
-        double litraiViso = 0;
-        for (int i = 0; i < cekiai.size() - 1; i++) {
-
-            litraiViso = litraiViso + cekiai.get(i).getKiekis();
-        }
 
         double vidLitroKaina = 0;
-        for (int i = 0; i < cekiai.size() - 1; i++) {
 
-            vidLitroKaina = cekiai.get(i).getKainaVnt() + vidLitroKaina;
-        }
 
-        double litraiSimtuiKm = litraiViso / nuvaziuotasAtstumas;
+//        Set <String> nrSarasas = cekiaiByVm.keySet();
 
-        double bendraLitroKaina = vidLitroKaina / (cekiai.size() - 1);
-        double tikraKaina = bendraLitroKaina * vidLitraiSimtui();
+//        for (String numeris:nrSarasas) {
+            List<Cekis> numerioCekiai = cekiaiByVm.get(valstybinisNumeris);
+            for (int i = 0; i < numerioCekiai.size() - 1; i++) {
 
-        return tikraKaina;
+                vidLitroKaina = numerioCekiai.get(i).getKainaVnt() + vidLitroKaina;
+            }
+//        }
+
+
+
+
+        double bendraLitroKaina = vidLitroKaina / (cekiaiByVm.size() - 1);
+
+        return bendraLitroKaina * vidLitraiSimtui(valstybinisNumeris);
     }
 
 

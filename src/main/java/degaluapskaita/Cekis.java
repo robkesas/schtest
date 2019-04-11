@@ -3,18 +3,27 @@ package degaluapskaita;
 public class Cekis {
 
     private String data;
-    private DegaluRusis degalurusis;
     private double kainaVnt;
     private double kiekis;
     private int odometroparodymai;
+    private String valstybinisNumeris;
 
-    public Cekis(DegaluRusis degalurusis, double kainaVnt, double kiekis, int odometroparodymai) {
-        this.degalurusis = degalurusis;
+    public Cekis(String valstybinisNumeris, double kainaVnt, double kiekis, int odometroparodymai) {
+        this.valstybinisNumeris = NumeriaiUtil.remobeSpaceNUpperCase (valstybinisNumeris);
         this.kainaVnt = kainaVnt;
         this.kiekis = kiekis;
         this.odometroparodymai = odometroparodymai;
     }
 
+
+
+    public String getValstybinisNumeris() {
+        return valstybinisNumeris;
+    }
+
+    public void setValstybinisNumeris(String valstybinisNumeris) {
+        this.valstybinisNumeris = valstybinisNumeris;
+    }
 
 
     public String getData() {
@@ -23,14 +32,6 @@ public class Cekis {
 
     public void setData(String data) {
         this.data = data;
-    }
-
-    public DegaluRusis getDegalurusis() {
-        return degalurusis;
-    }
-
-    public void setDegalurusis(DegaluRusis degalurusis) {
-        this.degalurusis = degalurusis;
     }
 
     public double getKainaVnt() {
