@@ -63,11 +63,12 @@ public class Apskaita {
         for (int i = 0; i < numerioCekiai.size() - 1; i++) {
 
             vidLitroKaina = numerioCekiai.get(i).getKainaVnt() + vidLitroKaina;
+
         }
-//        }
 
 
-        return vidLitroKaina / (numerioCekiai.size() - 1);
+
+        return vidLitroKaina / (numerioCekiai.size() - 1) * vidLitraiSimtui(valstybinisNumeris);
     }
 
 
