@@ -21,16 +21,12 @@ public class Apskaita {
         return cekiaiByVm.keySet();
     }
 
-//    public List <Cekis> getCekiaiByValstbinisNr (String valstybinisNumeris) {
-//        return cekiaiByVm.get(valstybinisNumeris);
-//    }
     public double vidLitraiSimtui(String valstybinisNumeris) {
-
 
 
         List<Cekis> cekiai = this.cekiaiByVm.get(NumeriaiUtil.remobeSpaceNUpperCase(valstybinisNumeris));
 
-        if (cekiai == null ) {
+        if (cekiai == null) {
 
             return -1;
 
@@ -57,30 +53,21 @@ public class Apskaita {
     }
 
 
-
     public double vidKainaSimtui(String valstybinisNumeris) {
-
 
 
         double vidLitroKaina = 0;
 
 
-//        Set <String> nrSarasas = cekiaiByVm.keySet();
+        List<Cekis> numerioCekiai = cekiaiByVm.get(valstybinisNumeris);
+        for (int i = 0; i < numerioCekiai.size() - 1; i++) {
 
-//        for (String numeris:nrSarasas) {
-            List<Cekis> numerioCekiai = cekiaiByVm.get(valstybinisNumeris);
-            for (int i = 0; i < numerioCekiai.size() - 1; i++) {
-
-                vidLitroKaina = numerioCekiai.get(i).getKainaVnt() + vidLitroKaina;
-            }
+            vidLitroKaina = numerioCekiai.get(i).getKainaVnt() + vidLitroKaina;
+        }
 //        }
 
 
-
-
-        double bendraLitroKaina = vidLitroKaina / (cekiaiByVm.size() - 1);
-
-        return bendraLitroKaina * vidLitraiSimtui(valstybinisNumeris);
+        return vidLitroKaina / (numerioCekiai.size() - 1);
     }
 
 

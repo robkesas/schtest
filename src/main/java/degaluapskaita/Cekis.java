@@ -9,12 +9,11 @@ public class Cekis {
     private String valstybinisNumeris;
 
     public Cekis(String valstybinisNumeris, double kainaVnt, double kiekis, int odometroparodymai) {
-        this.valstybinisNumeris = NumeriaiUtil.remobeSpaceNUpperCase (valstybinisNumeris);
+        this.valstybinisNumeris = NumeriaiUtil.remobeSpaceNUpperCase(valstybinisNumeris);
         this.kainaVnt = kainaVnt;
         this.kiekis = kiekis;
         this.odometroparodymai = odometroparodymai;
     }
-
 
 
     public String getValstybinisNumeris() {
